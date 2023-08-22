@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "d1e5fa14-e4e2-48fc-a30c-ddfbd68e33d9",
+		"name": "Weather Report",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29056245",
+		"_collection_link": "https://test-phoenix.postman.co/workspace/testing_workspace~d8406dd6-fc49-464e-a571-896b82209fbd/collection/29056245-d1e5fa14-e4e2-48fc-a30c-ddfbd68e33d9?action=share&source=collection_link&creator=29056245"
+	},
+	"item": [
+		{
+			"name": "Bengaluru Weather",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate the coord object\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.coord).to.exist.and.to.be.an('object');\r",
+							"    pm.expect(responseData.coord.lon).to.exist.and.to.be.a('number');\r",
+							"    pm.expect(responseData.coord.lat).to.exist.and.to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate the wind object\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseData.wind).to.exist.and.to.be.an('object');\r",
+							"    pm.expect(responseData.wind.speed).to.exist.and.to.be.a('number');\r",
+							"    pm.expect(responseData.wind.deg).to.exist.and.to.be.a('number');\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.openweathermap.org/data/2.5/weather?q=Bengaluru&appid=4838282e9d146f53ad4364cb718b1282",
+					"protocol": "https",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Bengaluru"
+						},
+						{
+							"key": "appid",
+							"value": "4838282e9d146f53ad4364cb718b1282"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
